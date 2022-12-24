@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+<p id="myP1">NBA article</p>
+  <input type="button" onclick="demoDisplay()" value="Hide pixnet show text">
+<input type="button" onclick="demoVisibility()" value="Hide text show pixnet">
+	<script>
+	var xmlhttp = new XMLHttpRequest();
+	var url = "https://emma.pixnet.cc/mainpage/blog/categories/hot_weekly/32?page=1&per_page=5&api_version=2&format=json&fbclid=IwAR1DLtaUhu3rUPvtNQ-P8ZTuTNJywE4_igBkBi-Z9mFfaV3RPGeOlnT7_os";
+
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var myArr = JSON.parse(xmlhttp.responseText);
+			myFunction(myArr);
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+
+	function myFunction(arr) {
+		var data = arr.articles;
+		var out = "";
+		var i;
+		for (i = 0; i < data.length; i++) {
+			if ( data[i].thumb != "" ) out += '<img src="' + data[i].thumb + '" />';
+			if ( data[i].title != "" ) out += '<p><a href="' + data[i].link + '" target="_blank">' + data[i].title + '</a></p>';
+			out += '<p> </p>';
+			if ( data[i].tags.length != 0 )
+			   {
+				out += '<p>Tags: ';
+				for (j = 0; j < data[i].tags.length; j++) {
+					out += data[i].tags[j].tag + ', ';
+				}
+				out += '</p>';
+			   }
+			out += '<br /><br /><br />';
+		}
+		document.getElementById("pixnet-stuff").innerHTML = out;
+	}
+  function demoDisplay() {
+  document.getElementById("pixnet-stuff").style.display = "none";
+  document.getElementById("myP1").style.display = "block";
+}
+
+	function demoVisibility() {
+  document.getElementById("pixnet-stuff").style.display = "block";
+  document.getElementById("myP1").style.display = "none";
+}
+	</script>
+</head>
+<body>
+	<div id="pixnet-stuff">
+	</div>
+  
+</body>
+</html>
