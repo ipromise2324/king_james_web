@@ -1,0 +1,108 @@
+
+<!DOCTYPE html> 
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	
+	<script>
+
+		// 取得網址裡的參數 
+		function GetUrlVar(VarName) 
+		{
+		  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		  var regexS = "[\\?&]" + VarName + "=([^&#]*)";
+		  var regex = new RegExp(regexS);
+		  var results = regex.exec(window.location.href);
+		  if (results == null)
+		   	 return "";
+		  else
+			 return results[1];
+		}
+
+		  
+		function f(){
+		
+			var s = "";
+			
+			var x = decodeURIComponent(GetUrlVar('id'));
+			
+			if(x == 0){
+				var title = ["The Goat", "The King", "LeGoat", "LBJ"];
+				var graph = ["https://media.tenor.com/0qx7C3sRmfAAAAAM/lebron-james-lebron-lakers.gif",
+							 "https://media.tenor.com/1x33o6DmekcAAAAM/los-angeles-lakers-lakers.gif", 
+							 "https://media4.giphy.com/media/UvDvPrWlZqIFF664KI/giphy.gif",
+							 "https://media.tenor.com/wVPqpntAKcQAAAAd/lebron-james-dunk.gif"];
+				var card = ["Washed???",
+							 "Young King", 
+							 "G.O.A.T",
+							 "OLD???"];
+				var link = ["https://www.youtube.com/watch?v=s0jZNe7IOaQ",
+							 "https://www.youtube.com/watch?v=sxlh4Gsc320&t=402s", 
+							 "https://www.youtube.com/watch?v=S_2YYlGI7LM",
+							 "https://www.youtube.com/watch?v=72jxV2wAcWo"];
+			}
+			else if(x == 1){
+				var title = ["IQ", "Think before you come for the great one", "Great", "Let's GO!!!"];
+				var graph = ["https://thumbs.gfycat.com/ComposedHopefulInexpectatumpleco-max-1mb.gif",
+							 "https://media.tenor.com/2JOM01EJUDMAAAAd/le-bron-the-silencer.gif", 
+							 "https://giffiles.alphacoders.com/269/26949.gif",
+							 "https://thumbs.gfycat.com/AromaticRecklessInsect-max-1mb.gif"];
+				var card = ["Action > words",
+							 "!!!", 
+							 ".....",
+							 "bad memoryyy"];
+				var link = ["https://www.youtube.com/watch?v=vPWJMrLGSHc",
+							 "https://www.youtube.com/watch?v=Mx6osMPPMao", 
+							 "https://www.youtube.com/watch?v=4WZ4GtJQclw",
+							 "https://www.youtube.com/watch?v=NRoyj_pRKVI"];
+			}
+			else if(x == 2){
+				var title = ["Focus", "Talented", "Sign", "Dunk"];
+				var graph = ["https://media.tenor.com/YQFH8nOMlXMAAAAC/lebron-james-game6.gif",
+							 "https://media.tenor.com/0jQmfwvrWooAAAAd/lebron-james-miami-heat.gif", 
+							 "https://i.gifer.com/8fQv.gif",
+							 "https://i.gifer.com/OTGw.gif"];
+				var card = ["I Promise",
+							 "Prime", 
+							 "3 in a roll",
+							 "Cnn't Stop him..."];
+				var link = ["https://www.youtube.com/watch?v=jFvPLbd6Nr4",
+							 "https://www.youtube.com/results?search_query=lebron+james+highlights+heat", 
+							 "https://www.youtube.com/watch?v=mv6jjSKOENc",
+							 "https://www.youtube.com/watch?v=CcrfHQ374ic"];
+			}
+			
+		
+			for(let a=0; a<title.length; a++){
+				s = s + `<div class="row">
+						<div class="col s12 m6 l3">
+						<div class="card">
+						<div class="card-image">
+						<img src=${graph[a]} height=500 width=500>
+						<span class="card-title black">${title[a]}</span>
+						</div>
+						<div class="card-content">
+						<p>${card[a]}</p>
+						</div>
+						<div class="card-action">
+						<a href=${link[a]}>link</a>
+						</div>
+						</div>
+						</div>`
+			}
+			
+			document.getElementById("ex").innerHTML = s;
+		}
+    </script>
+</head> 
+
+<body> 
+
+<div id = "ex"></div>
+<script>f()</script>
+
+</body>
+
+</html>

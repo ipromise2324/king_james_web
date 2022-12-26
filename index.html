@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <title>Lebron Jamse</title>
+  <title>Lebron James</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -25,7 +25,59 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+	  
+	  <script>
+	  
+		google.charts.load('current', {'packages':['corechart']});
 
+		// Set a callback to run when the Google Visualization API is loaded.	
+		google.charts.setOnLoadCallback(init);
+  
+
+		function init() {
+			// 這個例子使用的試算表是 https://docs.google.com/spreadsheets/d/1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk/copy
+			// 將上述試算表另存副本後，你要在自己的雲端硬碟將該試算表設定成[知道連結的使用者都能查看]。
+			// 然後讓程式讀取 https://docs.google.com/spreadsheets/d/瀏覽器網址列上的網址擷取序號部分/gviz/tq?sheet=工作表名稱
+			// 也就是將下列的 1QScI5d56Kh-LGywY4WR6EvRGPcalFQYUAdqMxbFVDvk 更換成自己的檔案序號，以及最後部分指讀取哪個工作表。
+			var url =
+				'https://docs.google.com/spreadsheets/d/1-0MKi6ZPfXCtRKXQoNkRs0lSo1RSrI0hVXyEUxd4unQ/gviz/tq?sheet=工作表1';
+			var query = new google.visualization.Query(url);
+			query.setQuery('select *');
+			query.send(processSheetsData);
+			}	
+	
+		function processSheetsData(response) {
+			var data = response.getDataTable();
+			var columns = data.getNumberOfColumns();
+			var rows = data.getNumberOfRows();
+
+			//var str = "";
+			var s = '';
+			
+			for(var r = 0 ; r < rows; r ++){
+		
+			s +=  `<div class="col s12 m6 l3">
+						<div class="card">
+							<div class="card-image waves-effect waves-block waves-light">
+								<img src=" ${data.getFormattedValue(r,1)} ">
+							</div>
+							<div class="card-content">
+								<span class="card-title activator grey-text text-darken-4"> ${data.getFormattedValue(r,2)} <i class="material-icons right">more_vert</i></span>
+								<p><a href="test2.html?id=${data.getFormattedValue(r,0)}}">This is a link</a></p>
+							</div>
+							<div class="card-reveal">
+								<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+								<p>Here is some more information about this product that is only revealed once clicked on.</p>
+							</div>
+						</div>
+					</div>`;
+		
+			document.getElementById("demoo").innerHTML = s;
+			}
+		}
+	  
+	  </script>
     <script>
       var xmlhttp = new XMLHttpRequest();
       var xmlhttp2 = new XMLHttpRequest();
@@ -151,24 +203,31 @@
         </div>
       </div>
     </div>
-
+    <br><br>
     <!-- Header -->
     <header class="w3-display-container w3-content w3-center w3-black" style="max-width:1500px;min-width:300px"; id="home">
-      <img class="w3-image" src="pic/1.jpg" alt="logo" style="height:800px">
+      <br><br>
+      <img class="w3-image" src="pic/1.jpg" alt="logo" width="800px" height="100%">
       <div class="w3-display-bottomleft w3-padding-24 w3-opacity">
         <h4 class="w3-xxlarge " style="color:white">I PROMISE!!!</h4>
       </div>
     </header>
 
 
-
+    <div class="col l3 offset-l2 s6">
+			<ul>
+        
+			  <li><a class="blue-text text-darken-2" href="test.html?id=0"><font size="7">Lakers Period</font><br></a></li>
+			  <li><a class="amber-text text-darken-4" href="test.html?id=1"><font size="7">Cavs Period</font></a></li>
+			  <li><a class="blue-text text-darken-2" href="test.html?id=2"><font size="7">Heats Period</font></a></li>
+			</ul>
     <!-- About Section -->
     <div class="w3-content" style="max-width:1300px">
       <div class="w3-row w3-padding-64" id="about">
         <div class="w3-col m6 w3-padding w3-hide-small w3-card-4">
           <img src="pic/cool.jpg" class="w3-round w3-image w3-opacity-min" alt="Bar" width="800px" height="100%">
           <div class="w3-container w3-center">
-            <p>King Jamse <br>Chalk toss</p>
+            <p>King James <br>Chalk toss</p>
           </div>
         </div>
 
